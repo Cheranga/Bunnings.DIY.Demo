@@ -17,12 +17,12 @@ var envType = {
 }
 
 var appNameWithEnvironment = '${appName}-${environment}'
-var rgName = 'vcs-rg-${appNameWithEnvironment}'
-var funcAppName = 'vcs-fn-${appNameWithEnvironment}'
-var sgName = take(replace('vcssg${appNameWithEnvironment}', '-', ''), 24)
-var appInsName = 'vcs-ins-${appNameWithEnvironment}'
-var aspName = 'vcs-asp-${appNameWithEnvironment}'
-var kvName = take(replace('vcskv${appNameWithEnvironment}', '-', ''), 24)
+var rgName = 'bun-rg-${appNameWithEnvironment}'
+var funcAppName = 'bun-fn-${appNameWithEnvironment}'
+var sgName = take(replace('bunsg${appNameWithEnvironment}', '-', ''), 24)
+var appInsName = 'bun-ins-${appNameWithEnvironment}'
+var aspName = 'bun-asp-${appNameWithEnvironment}'
+var kvName = take(replace('bunkv${appNameWithEnvironment}', '-', ''), 24)
 
 module rg 'resourcegroup/template.bicep' = {
   scope: subscription()
