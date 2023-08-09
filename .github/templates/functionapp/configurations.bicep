@@ -23,11 +23,11 @@ var appSettings = {
   WEBSITE_TIME_ZONE: timeZone
   WEBSITE_ADD_SITENAME_BINDINGS_IN_APPHOST_CONFIG: '1'
   ReadFileConfig__Separator: '\n'
-  ReadFileConfig__ContainsHeader": true
-  ReadFileConfig__CsvPath": "input"
-  ReadFileConfig__Queue": "inputs"
-  ReadFileConfig__TimeToLiveInSeconds": 30
-  ReadFileConfig__Connection": '@Microsoft.KeyVault(SecretUri=${kv.properties.vaultUri}/secrets/storageAccountConnectionString/)'
+  ReadFileConfig__ContainsHeader: true
+  ReadFileConfig__CsvPath: 'input'
+  ReadFileConfig__Queue: 'inputs'
+  ReadFileConfig__TimeToLiveInSeconds: 30
+  ReadFileConfig__Connection: '@Microsoft.KeyVault(SecretUri=${kv.properties.vaultUri}/secrets/storageAccountConnectionString/)'
 }
 
 resource productionSlotAppSettings 'Microsoft.Web/sites/config@2021-02-01' = {
