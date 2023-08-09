@@ -37,7 +37,7 @@ jobs:
         shell: bash
         run: dotnet publish -c Release --no-build src/${{ matrix.project-name }}/${{ matrix.project-name }}.csproj -o ${{ env.ARTIFACT_NAME }}
 
-      - name: Publish Artifact - API
+      - name: Publish Artifact - FunctionApp
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACT_NAME }}
@@ -50,4 +50,16 @@ jobs:
           name: deploy
           path: ./.github/templates
           if-no-files-found: error
+          
+  DEV:
+    name: DEV
+    needs: publish
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: dev
+      appName: bunordprocessor               
+      location: australiasoutheast
+    secrets:
+      subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+      credentials: ${{ secrets.AZURE_CREDENTIALS }}          
 
