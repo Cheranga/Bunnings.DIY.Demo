@@ -32,3 +32,44 @@ module rg 'resourcegroup/template.bicep' = {
     name: rgName
   }
 }
+
+module storageAccount 'storageaccount/template.bicep' = {
+  name: '${version}-sg'
+  scope: resourceGroup(rgName)
+  params: {
+    name: sgName
+    location: location
+    queues: 'inputs'
+    blobContainers: 'input'
+    storageType: envType[environment]
+  }
+  dependsOn: [
+    rg
+  ]
+}
+
+
+module appInsights 'appinsights/template.bicep' = {
+  name: '${version}-ins'
+  scope: resourceGroup(rgName)
+  params: {
+    name: appInsName
+    location: location
+  }
+  dependsOn: [
+    rg
+  ]
+}
+
+module appServicePlan 'appserviceplan/template.bicep' = {
+  name: '${version}-asp'
+  scope: resourceGroup(rgName)
+  params: {
+    name: aspName
+    location: location
+    category: envType[environment]
+  }
+  dependsOn: [
+    rg
+  ]
+}
