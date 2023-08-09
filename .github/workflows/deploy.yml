@@ -57,6 +57,12 @@ jobs:
             version=${{ env.ARTIFACT_NAME }}
             environment=${{ inputs.environment }}
             location=${{ inputs.location }}
+            
+      - name: "Deploy Azure Function App"
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'bun-fn-${{ inputs.appName }}-${{ inputs.environment }}'
+          package: ${{ env.ARTIFACT_NAME }}            
          
       - name: Logout from Azure
         uses: Azure/CLI@v1
