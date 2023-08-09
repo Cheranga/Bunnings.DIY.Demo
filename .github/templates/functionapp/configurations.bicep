@@ -26,7 +26,7 @@ var appSettings = {
   ReadFileConfig__ContainsHeader: true
   ReadFileConfig__CsvPath: 'input'
   ReadFileConfig__Queue: 'inputs'
-  ReadFileConfig__TimeToLiveInSeconds: 30
+  ReadFileConfig__TimeToLiveInSeconds: '30'
   ReadFileConfig__Connection: '@Microsoft.KeyVault(SecretUri=${kv.properties.vaultUri}/secrets/storageAccountConnectionString/)'
 }
 
