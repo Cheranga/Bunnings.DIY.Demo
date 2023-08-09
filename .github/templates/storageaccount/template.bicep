@@ -27,20 +27,16 @@ resource stg 'Microsoft.Storage/storageAccounts@2021-02-01' = {
 }
 
 resource queueService 'Microsoft.Storage/storageAccounts/queueServices@2021-08-01' = if (!empty(queueArray)) {
-  name: '${name}/default'
-  dependsOn: [
-    stg
-  ]
+  parent: stg
+  name: 'default'
   resource aaa 'queues' = [for q in queueArray: {
     name: q
   }]
 }
 
 resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2021-08-01' = if (!empty(containerArray)) {
-  name: '${name}/default'
-  dependsOn: [
-    stg
-  ]
+  parent: stg
+  name: 'default'
   resource aaa 'containers' = [for c in containerArray: {
     name: c
   }]

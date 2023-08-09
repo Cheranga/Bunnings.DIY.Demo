@@ -145,7 +145,7 @@ module funcAppSettings 'functionapp/configurations.bicep' = {
   dependsOn: [
     app
     keyVault
-    rbacBlobContributor
+    rbacSetting
   ]
 }
 
