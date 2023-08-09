@@ -134,3 +134,18 @@ module rbacSetting 'rbac/template.bicep' = {
   ]
 }
 
+module funcAppSettings 'functionapp/configurations.bicep' = {
+  scope: resourceGroup(rgName)
+  name: '${version}-fn-settings'
+  params: {
+    appName: funcAppName
+    kvName: kvName
+    storageName: sgName
+  }
+  dependsOn: [
+    app
+    keyVault
+    rbacBlobContributor
+  ]
+}
+
