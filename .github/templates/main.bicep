@@ -99,3 +99,36 @@ module app 'functionapp/template.bicep' = {
     appServicePlan
   ]
 }
+
+module kvPolicies 'keyvault/policies.bicep' = {
+  scope: resourceGroup(rgName)
+  name: '${version}-kv-policies'
+  params: {
+    appId: app.outputs.prodId
+    appInsightsName: appInsName
+    kvName: kvName
+    storageName: sgName
+  }
+  dependsOn: [
+    rg
+    app
+    appInsights
+    keyVault
+    storageAccount
+  ]
+}
+
+module rbacBlobContributor 'rbac/template.bicep' = {
+  scope: resourceGroup(rgName)
+  name: '${version}-rbac-func-blob'
+  params: {
+    appId: app.outputs.prodId
+    friendlyName: guid('${rgName}-prod-${funcAppName}')
+    storageName: sgName
+  }
+  dependsOn: [
+    rg
+    app
+    storageAccount
+  ]
+}
