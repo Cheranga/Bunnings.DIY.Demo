@@ -23,7 +23,7 @@ var appSettings = {
   WEBSITE_TIME_ZONE: timeZone
   WEBSITE_ADD_SITENAME_BINDINGS_IN_APPHOST_CONFIG: '1'
   ReadFileConfig__Separator: '\n'
-  ReadFileConfig__ContainsHeader: true
+  ReadFileConfig__ContainsHeader: 'true'
   ReadFileConfig__CsvPath: 'input'
   ReadFileConfig__Queue: 'inputs'
   ReadFileConfig__TimeToLiveInSeconds: '30'
