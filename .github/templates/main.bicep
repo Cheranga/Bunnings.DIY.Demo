@@ -73,3 +73,29 @@ module appServicePlan 'appserviceplan/template.bicep' = {
     rg
   ]
 }
+
+module keyVault 'keyvault/template.bicep' = {
+  name: '${version}-kv'
+  scope: resourceGroup(rgName)
+  params: {
+    name: kvName
+    location: location
+  }
+  dependsOn: [
+    rg
+  ]
+}
+
+module app 'functionapp/template.bicep' = {
+  name: '${version}-fn'
+  scope: resourceGroup(rgName)
+  params: {
+    appName: funcAppName
+    aspName: aspName
+    location: location
+  }
+  dependsOn: [
+    rg
+    appServicePlan
+  ]
+}
