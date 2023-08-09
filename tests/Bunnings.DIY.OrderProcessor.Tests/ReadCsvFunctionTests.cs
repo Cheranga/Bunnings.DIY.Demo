@@ -22,11 +22,7 @@ public static class ReadCsvFunctionTests
                         It.IsAny<BinaryData>(),
                         null,
                         It.IsAny<TimeSpan>(),
-                        It.IsAny<CancellationToken>()
-                    // It.IsAny<TimeSpan>(),
-                    // It.IsAny<TimeSpan>(),
-                    // It.IsAny<CancellationToken>()
-                    )
+                        It.IsAny<CancellationToken>())
             )
             .ReturnsAsync(
                 Response.FromValue(
