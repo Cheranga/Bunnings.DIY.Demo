@@ -118,12 +118,13 @@ module kvPolicies 'keyvault/policies.bicep' = {
   ]
 }
 
-module rbacBlobContributor 'rbac/template.bicep' = {
+module rbacSetting 'rbac/template.bicep' = {
   scope: resourceGroup(rgName)
   name: '${version}-rbac-func-blob'
   params: {
     appId: app.outputs.prodId
-    friendlyName: guid('${rgName}-prod-${funcAppName}')
+    friendlyNameForBlobs: guid('${rgName}-prod-${funcAppName}')
+    friendlyNameForQueues: guid('${rgName}-prod-${funcAppName}-queues')
     storageName: sgName
   }
   dependsOn: [
@@ -132,3 +133,4 @@ module rbacBlobContributor 'rbac/template.bicep' = {
     storageAccount
   ]
 }
+

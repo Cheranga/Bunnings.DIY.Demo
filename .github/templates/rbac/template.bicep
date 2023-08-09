@@ -1,6 +1,7 @@
 targetScope = 'resourceGroup'
 
-param friendlyName string
+param friendlyNameForBlobs string
+param friendlyNameForQueues string
 param appId string
 param storageName string
 
@@ -21,7 +22,7 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
 }
 
 resource rbacBlobContributor 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: friendlyName
+  name: friendlyNameForBlobs
   scope: storage
   properties: {
     principalId: appId
@@ -30,7 +31,7 @@ resource rbacBlobContributor 'Microsoft.Authorization/roleAssignments@2022-04-01
 }
 
 resource rbacQueueWriter 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: friendlyName
+  name: friendlyNameForQueues
   scope: storage
   properties: {
     principalId: appId
