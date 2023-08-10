@@ -7,16 +7,11 @@ using Nuke.Common.ProjectModel;
     "bunnings-diy",
     GitHubActionsImage.UbuntuLatest,
     On = new[] { GitHubActionsTrigger.PullRequest },
-    InvokedTargets = new[]
-    {
-        nameof(IFormatCodeTasks.CheckFormat),
-        nameof(IOasLintTask.LintOas),
-        nameof(IDotnetBuildTasks.Test)
-    }
+    InvokedTargets = new[] { nameof(IBuildPipeline.Build) }
 )]
-sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks, INpmBuildTasks, IOasLintTask
+sealed class Build : NukeBuild, IBuildPipeline
 {
-    public static int Main() => Execute<Build>(x => (x as IDotnetBuildTasks).Test);
+    public static int Main() => Execute<Build>(x => (x as IBuildPipeline).Build);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild

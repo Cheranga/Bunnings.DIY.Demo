@@ -4,6 +4,8 @@ using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 
+namespace _build;
+
 /// <summary>
 /// Defines the standard `dotnet` tasks
 /// </summary>
@@ -40,7 +42,6 @@ public interface IDotnetBuildTasks : INukeBuild
                             settings
                                 .SetConfiguration(Configuration.Release)
                                 .SetProject(PublishProject())
-                                // .SetProject(RootDirectory / "src" / "Bunnings.DIY.OrderProcessor" / "Bunnings.DIY.OrderProcessor.csproj")
                                 .SetOutput(RootDirectory / "artifacts" / version)
                     );
                 });
