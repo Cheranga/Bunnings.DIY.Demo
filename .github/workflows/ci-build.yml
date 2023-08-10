@@ -42,7 +42,7 @@ jobs:
       - name: Setup Npm
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts'
+          node-version: current
           
       - name: Npm Install
         run: npm install
