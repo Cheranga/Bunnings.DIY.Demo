@@ -46,6 +46,7 @@ resource rbacStorageBlobDataOwner 'Microsoft.Authorization/roleAssignments@2022-
   scope: storage
   properties: {
     principalId: appId
+    principalType:'ServicePrincipal'
     roleDefinitionId: storageBlobDataOwner.id
   }
 }
@@ -55,6 +56,7 @@ resource rbacStorageBlobContributor 'Microsoft.Authorization/roleAssignments@202
   scope: storage
   properties: {
     principalId: appId
+    principalType:'ServicePrincipal'
     roleDefinitionId: storageBlobContributor.id
   }
 }
@@ -64,6 +66,7 @@ resource rbacStorageBlobReader 'Microsoft.Authorization/roleAssignments@2022-04-
   scope: storage
   properties: {
     principalId: appId
+    principalType:'ServicePrincipal'
     roleDefinitionId: storageBlobReader.id
   }
 }
@@ -73,6 +76,7 @@ resource rbacStorageQueueDataContributor 'Microsoft.Authorization/roleAssignment
   scope: storage
   properties: {
     principalId: appId
+    principalType:'ServicePrincipal'
     roleDefinitionId: storageQueueDataContributor.id
   }
 }

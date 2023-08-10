@@ -14,9 +14,7 @@ resource kv 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
 }
 
 var appSettings = {
-  AzureWebJobsStorage__accountName: storageName
-  AzureWebJobsStorage__blobServiceUri: 'https://${storageName}.blob.core.windows.net'
-  AzureWebJobsStorage__queueServiceUri: 'https://${storageName}.queue.core.windows.net'
+  AzureWebJobsStorage__accountName: storageName  
   WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: '@Microsoft.KeyVault(SecretUri=${kv.properties.vaultUri}/secrets/storageAccountConnectionString/)'
   WEBSITE_CONTENTSHARE: toLower(appName)
   FUNCTIONS_EXTENSION_VERSION: '~4'
