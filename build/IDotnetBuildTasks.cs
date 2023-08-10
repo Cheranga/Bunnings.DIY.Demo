@@ -1,5 +1,6 @@
 ﻿using System.Reflection.Metadata;
 using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
@@ -28,13 +29,20 @@ public interface IDotnetBuildTasks : INukeBuild
                 .Produces(RootDirectory / "artifacts" / "funcapp")
                 .Executes(() =>
                 {
+                    var version = GitHubActions.Instance.GitHubEvent.TryGetValue(
+                        "tag_value",
+                        out var tag
+                    )
+                        ? tag.ToString()
+                        : "funcapp";
+
                     return DotNetTasks.DotNetPublish(
                         settings =>
                             settings
                                 .SetConfiguration(Configuration.Release)
                                 .SetProject(PublishProject())
                                 // .SetProject(RootDirectory / "src" / "Bunnings.DIY.OrderProcessor" / "Bunnings.DIY.OrderProcessor.csproj")
-                                .SetOutput(RootDirectory / "artifacts" / "funcapp")
+                                .SetOutput(RootDirectory / "artifacts" / version)
                     );
                 });
 
