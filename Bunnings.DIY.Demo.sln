@@ -4,12 +4,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunnings.DIY.OrderProcessor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunnings.DIY.OrderProcessor.Tests", "tests\Bunnings.DIY.OrderProcessor.Tests\Bunnings.DIY.OrderProcessor.Tests.csproj", "{FCB35F3E-6844-46AF-9B79-618378085DED}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{D4ACBC44-F3D3-43D3-9D22-3FB274C37BE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4ACBC44-F3D3-43D3-9D22-3FB274C37BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4ACBC44-F3D3-43D3-9D22-3FB274C37BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF7FEB5F-057E-4DAC-A4E0-BE685843171C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF7FEB5F-057E-4DAC-A4E0-BE685843171C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF7FEB5F-057E-4DAC-A4E0-BE685843171C}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Azure.Storage.Queues;
-using Azure.Storage.Queues.Models;
 using Bunnings.DIY.OrderProcessor.Extensions;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -45,7 +43,12 @@ public class ReadCsvFunction
             new List<Task>(),
             (list, s) =>
             {
-                list.Add(queueClient.SendMessageAsync(BinaryData.FromString(s), timeToLive:_fileConfig.TimeToLiveInSeconds.ToTimeSpan()));
+                list.Add(
+                    queueClient.SendMessageAsync(
+                        BinaryData.FromString(s),
+                        timeToLive: _fileConfig.TimeToLiveInSeconds.ToTimeSpan()
+                    )
+                );
                 return list;
             }
         );
