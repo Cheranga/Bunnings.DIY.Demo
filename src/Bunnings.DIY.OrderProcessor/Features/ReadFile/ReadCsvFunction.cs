@@ -24,17 +24,17 @@ public class ReadCsvFunction
 
     [FunctionName(nameof(ReadCsvFunction))]
     public async Task RunAsync(
-        [BlobTrigger("%ReadFileConfig:CsvPath%/{name}", Connection = "ReadFileConfig:Connection")]
+        [BlobTrigger("%ReadFileConfig:CsvPath%/{name}")]
             TextReader textReader,
         string name,
-        [Queue("%ReadFileConfig:Queue%", Connection = "ReadFileConfig:Connection")]
+        [Queue("%ReadFileConfig:Queue%")]
             QueueClient queueClient
     )
     {
         _logger.LogInformation("Triggered for {@FileName}", name);
 
         var fileContent = await textReader.ReadToEndAsync();
-        var fileLines = fileContent.Split(_fileConfig.Separator);
+        var fileLines = fileContent.Split("\n");
 
         var stopWatch = new Stopwatch();
         stopWatch.Start();
