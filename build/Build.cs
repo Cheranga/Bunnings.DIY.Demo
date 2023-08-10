@@ -7,7 +7,7 @@ using Nuke.Common.ProjectModel;
     "bunnings-diy",
     GitHubActionsImage.UbuntuLatest,
     On = new[] { GitHubActionsTrigger.PullRequest },
-    InvokedTargets = new[] { nameof(IDotnetBuildTasks.Compile) }
+    InvokedTargets = new[] { nameof(IDotnetBuildTasks.Test) }
 )]
 sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks, INpmBuildTasks, IOasLintTask
 {
