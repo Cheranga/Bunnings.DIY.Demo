@@ -8,6 +8,7 @@ var blobDataOwner = guid('${resourceGroup().name}-${friendlyName}-blobowner')
 var queueContributor = guid('${resourceGroup().name}-${friendlyName}-queuecont')
 var queueMessageSender = guid('${resourceGroup().name}-${friendlyName}-queuesender')
 var blobContributor = guid('${resourceGroup().name}-${friendlyName}-blobcont')
+var blobReader = guid('${resourceGroup().name}-${friendlyName}-blobreader')
 
 
 
@@ -19,6 +20,11 @@ resource storageBlobDataOwner 'Microsoft.Authorization/roleDefinitions@2018-01-0
 resource storageBlobContributor 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
   scope: subscription()
   name: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
+}
+
+resource storageBlobReader 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
+  scope: subscription()
+  name: '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1'
 }
 
 resource storageQueueDataContributor 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
@@ -50,6 +56,15 @@ resource rbacStorageBlobContributor 'Microsoft.Authorization/roleAssignments@202
   properties: {
     principalId: appId
     roleDefinitionId: storageBlobContributor.id
+  }
+}
+
+resource rbacStorageBlobReader 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: blobReader
+  scope: storage
+  properties: {
+    principalId: appId
+    roleDefinitionId: storageBlobReader.id
   }
 }
 
