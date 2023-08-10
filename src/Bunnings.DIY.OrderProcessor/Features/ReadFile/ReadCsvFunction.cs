@@ -24,11 +24,9 @@ public class ReadCsvFunction
 
     [FunctionName(nameof(ReadCsvFunction))]
     public async Task RunAsync(
-        [BlobTrigger("%ReadFileConfig:CsvPath%/{name}")]
-            TextReader textReader,
+        [BlobTrigger("%ReadFileConfig:CsvPath%/{name}")] TextReader textReader,
         string name,
-        [Queue("%ReadFileConfig:Queue%")]
-            QueueClient queueClient
+        [Queue("%ReadFileConfig:Queue%")] QueueClient queueClient
     )
     {
         _logger.LogInformation("Triggered for {@FileName}", name);

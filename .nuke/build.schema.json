@@ -72,12 +72,15 @@
           "items": {
             "type": "string",
             "enum": [
+              "Build",
               "CheckFormat",
               "Clean",
               "Compile",
+              "FileCopy",
               "Format",
               "LintOas",
               "NpmInstall",
+              "Publish",
               "Restore",
               "Test",
               "ToolRestore"
@@ -94,12 +97,15 @@
           "items": {
             "type": "string",
             "enum": [
+              "Build",
               "CheckFormat",
               "Clean",
               "Compile",
+              "FileCopy",
               "Format",
               "LintOas",
               "NpmInstall",
+              "Publish",
               "Restore",
               "Test",
               "ToolRestore"

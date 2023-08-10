@@ -1,10 +1,17 @@
 using _build;
 using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.ProjectModel;
 
-sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks, INpmBuildTasks, IOasLintTask
+[GitHubActions(
+    "bunnings-diy",
+    GitHubActionsImage.UbuntuLatest,
+    On = new[] { GitHubActionsTrigger.PullRequest },
+    InvokedTargets = new[] { nameof(IBuildPipeline.Build) }
+)]
+sealed class Build : NukeBuild, IBuildPipeline
 {
-    public static int Main() => Execute<Build>(x => (x as IDotnetBuildTasks).Compile);
+    public static int Main() => Execute<Build>(x => (x as IBuildPipeline).Build);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild
@@ -13,4 +20,6 @@ sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks, INpmBuildTa
 
     [Solution(GenerateProjects = true)]
     readonly Solution Solution;
+
+    public Project PublishProject() => Solution.Bunnings_DIY_OrderProcessor;
 }

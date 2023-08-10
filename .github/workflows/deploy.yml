@@ -17,10 +17,10 @@ on:
         required: true
       credentials:
         required: true
-        
+
 env:
   ARTIFACT_NAME: ${{ github.event.release.tag_name }}
-        
+
 jobs:
   provisionresources:
     name: ${{ inputs.appName }}
@@ -42,28 +42,28 @@ jobs:
         with:
           name: deploy
           path: deploy
-            
+
       - name: Provision Resources
-        uses: azure/arm-deploy@v1        
+        uses: azure/arm-deploy@v1
         with:
           failOnStdErr: false
-          deploymentName: ${{ env.ARTIFACT_NAME }}  
+          deploymentName: ${{ env.ARTIFACT_NAME }}
           scope: subscription
-          region: ${{ inputs.location }}    
-          subscriptionId: ${{ secrets.subscriptionId }}    
+          region: ${{ inputs.location }}
+          subscriptionId: ${{ secrets.subscriptionId }}
           template: deploy/main.bicep
           parameters: >
             appName=${{ inputs.appName }}
             version=${{ env.ARTIFACT_NAME }}
             environment=${{ inputs.environment }}
             location=${{ inputs.location }}
-            
+
       - name: "Deploy Azure Function App"
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'bun-fn-${{ inputs.appName }}-${{ inputs.environment }}'
-          package: ${{ env.ARTIFACT_NAME }}            
-         
+          package: ${{ env.ARTIFACT_NAME }}
+
       - name: Logout from Azure
         uses: Azure/CLI@v1
         with:
