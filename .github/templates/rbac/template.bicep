@@ -7,12 +7,18 @@ param storageName string
 var blobDataOwner = guid('${resourceGroup().name}-${friendlyName}-blobowner')
 var queueContributor = guid('${resourceGroup().name}-${friendlyName}-queuecont')
 var queueMessageSender = guid('${resourceGroup().name}-${friendlyName}-queuesender')
+var blobContributor = guid('${resourceGroup().name}-${friendlyName}-blobcont')
 
 
 
 resource storageBlobDataOwner 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
   scope: subscription()
   name: 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b'
+}
+
+resource storageBlobContributor 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
+  scope: subscription()
+  name: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
 }
 
 resource storageQueueDataContributor 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
@@ -35,6 +41,15 @@ resource rbacStorageBlobDataOwner 'Microsoft.Authorization/roleAssignments@2022-
   properties: {
     principalId: appId
     roleDefinitionId: storageBlobDataOwner.id
+  }
+}
+
+resource rbacStorageBlobContributor 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: blobContributor
+  scope: storage
+  properties: {
+    principalId: appId
+    roleDefinitionId: storageBlobContributor.id
   }
 }
 
