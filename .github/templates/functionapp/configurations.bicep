@@ -15,19 +15,19 @@ resource kv 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
 
 var appSettings = {
   AzureWebJobsStorage__accountName: storageName
+  AzureWebJobsStorage__blobServiceUri: 'https://${storageName}.blob.core.windows.net'
+  AzureWebJobsStorage__queueServiceUri: 'https://${storageName}.queue.core.windows.net'
   WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: '@Microsoft.KeyVault(SecretUri=${kv.properties.vaultUri}/secrets/storageAccountConnectionString/)'
   WEBSITE_CONTENTSHARE: toLower(appName)
   FUNCTIONS_EXTENSION_VERSION: '~4'
   APPINSIGHTS_INSTRUMENTATIONKEY: '@Microsoft.KeyVault(SecretUri=${kv.properties.vaultUri}/secrets/appInsightsKey/)'
   FUNCTIONS_WORKER_RUNTIME: 'dotnet'
   WEBSITE_TIME_ZONE: timeZone
-  WEBSITE_ADD_SITENAME_BINDINGS_IN_APPHOST_CONFIG: '1'
-  ReadFileConfig__Separator: '\n'
+  WEBSITE_ADD_SITENAME_BINDINGS_IN_APPHOST_CONFIG: '1'  
   ReadFileConfig__ContainsHeader: 'true'
   ReadFileConfig__CsvPath: 'input'
   ReadFileConfig__Queue: 'inputs'
-  ReadFileConfig__TimeToLiveInSeconds: '30'
-  ReadFileConfig__Connection: '@Microsoft.KeyVault(SecretUri=${kv.properties.vaultUri}/secrets/storageAccountConnectionString/)'
+  ReadFileConfig__TimeToLiveInSeconds: '30'  
 }
 
 resource productionSlotAppSettings 'Microsoft.Web/sites/config@2021-02-01' = {
