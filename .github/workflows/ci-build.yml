@@ -47,6 +47,9 @@ jobs:
       - name: Npm Install
         run: npm install
 
+      - name: Lint OaS
+        run: npm lintOas        
+
       - uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
