@@ -42,7 +42,6 @@ public static class ReadCsvFunctionTests
             {
                 Connection = "connectionstring",
                 Queue = "queue",
-                Separator = "\n",
                 ContainsHeader = true,
                 CsvPath = "pathtocsv",
                 TimeToLiveInSeconds = 30
