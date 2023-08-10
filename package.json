@@ -1,0 +1,16 @@
+{
+  "name": "bunnings.diy.demo",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmazzarol-bunnings/Bunnings.DIY.Demo.git"
+  },
+  "private": true,
+  "dependencies": {
+    "@stoplight/spectral-cli": "^6.10.1"
+  },
+  "scripts": {
+    "lintOas": "spectral lint ./specs/oas/*"
+  }
+}

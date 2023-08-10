@@ -2,7 +2,7 @@ using _build;
 using Nuke.Common;
 using Nuke.Common.ProjectModel;
 
-sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks
+sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks, INpmBuildTasks, IOasLintTask
 {
     public static int Main() => Execute<Build>(x => (x as IDotnetBuildTasks).Compile);
 
