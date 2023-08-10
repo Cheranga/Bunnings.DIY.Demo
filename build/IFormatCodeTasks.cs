@@ -24,5 +24,3 @@ public interface IFormatCodeTasks : INukeBuild
                     DotNetTasks.DotNet("csharpier . --check");
                 });
 }
-
-
