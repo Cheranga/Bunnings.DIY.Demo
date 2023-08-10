@@ -6,7 +6,7 @@ namespace _build;
 /// <summary>
 /// Provides a task for formatting the C# code using `CSharpier`
 /// </summary>
-public interface IFormatCodeTask : INukeBuild
+public interface IFormatCodeTasks : INukeBuild
 {
     Target Format =>
         _ =>
