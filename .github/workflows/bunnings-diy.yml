@@ -31,5 +31,15 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: Test'
-        run: ./build.cmd Test
+      - name: 'Run: Publish'
+        run: ./build.cmd Publish
+      - name: 'Publish: deploy'
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy
+          path: artifacts/deploy
+      - name: 'Publish: funcapp'
+        uses: actions/upload-artifact@v3
+        with:
+          name: funcapp
+          path: artifacts/funcapp

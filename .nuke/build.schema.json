@@ -75,9 +75,11 @@
               "CheckFormat",
               "Clean",
               "Compile",
+              "FileCopy",
               "Format",
               "LintOas",
               "NpmInstall",
+              "Publish",
               "Restore",
               "Test",
               "ToolRestore"
@@ -97,9 +99,11 @@
               "CheckFormat",
               "Clean",
               "Compile",
+              "FileCopy",
               "Format",
               "LintOas",
               "NpmInstall",
+              "Publish",
               "Restore",
               "Test",
               "ToolRestore"
