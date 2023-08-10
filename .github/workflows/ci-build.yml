@@ -38,6 +38,14 @@ jobs:
 
       - name: Check Code Format
         run: dotnet csharpier . --check
+        
+      - name: Setup Npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts'
+          
+      - name: Npm Install
+        run: npm install
 
       - uses: actions/upload-artifact@v2
         if: success() || failure()
