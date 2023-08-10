@@ -23,21 +23,22 @@ jobs:
         with:
           dotnet-version: |
             6.0.x
-            
-      - name: Install dotnet Tooling
-        run: dotnet tool restore
         
-      - name: Check format
-        run: dotnet csharpier . --check
-        
-      - name: Install dependencies
+      - name: Restore
         run: dotnet restore tests/${{ matrix.project-name }}.Tests/${{ matrix.project-name }}.Tests.csproj
         
       - name: Build
         run: dotnet build --configuration Release --no-restore tests/${{ matrix.project-name }}.Tests/${{ matrix.project-name }}.Tests.csproj
         
       - name: Test
-        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx" tests/${{ matrix.project-name }}.Tests/${{ matrix.project-name }}.Tests.csproj
+        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx" tests/${{ matrix.project-name }}.Tests/${{ matrix.project-name }}.Tests.csproj        
+        
+      - name: Restore DotNet Tools
+        run: dotnet tool restore
+
+      - name: Check Code Format
+        run: dotnet csharpier . --check
+
       - uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
