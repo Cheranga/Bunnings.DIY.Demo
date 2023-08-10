@@ -1,7 +1,7 @@
 ﻿using Nuke.Common;
 using Nuke.Common.Tools.Npm;
 
-namespace _build;
+namespace _build.Targets;
 
 /// <summary>
 /// Tasks relate to `Npm`

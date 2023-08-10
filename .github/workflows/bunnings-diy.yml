@@ -16,7 +16,13 @@
 
 name: bunnings-diy
 
-on: [pull_request, push]
+on:
+  push:
+    branches:
+      - Main
+  pull_request:
+    branches:
+      - Main
 
 jobs:
   ubuntu-latest:

@@ -1,7 +1,7 @@
 ﻿using Nuke.Common;
 using Nuke.Common.Tools.DotNet;
 
-namespace _build;
+namespace _build.Targets;
 
 /// <summary>
 /// Provides a task for formatting the C# code using `CSharpier`
