@@ -1,0 +1,64 @@
+name: CD Build
+
+on:
+  release:
+    types: [published]
+
+env:
+  ARTIFACT_NAME: ${{ github.event.release.tag_name }}
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project-name:
+          - Bunnings.DIY.OrderProcessor
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            6.0.x
+
+      - name: Restore projects
+        shell: bash
+        run: dotnet restore
+
+      - name: Build Projects
+        shell: bash
+        run: dotnet build --no-restore -c Release
+
+      - name: Create Artifact
+        shell: bash
+        run: dotnet publish -c Release --no-build src/${{ matrix.project-name }}/${{ matrix.project-name }}.csproj -o ${{ env.ARTIFACT_NAME }}
+
+      - name: Publish Artifact - FunctionApp
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACT_NAME }}/**
+          if-no-files-found: error
+
+      - name: Publish Artifact - Templates
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy
+          path: ./.github/templates
+          if-no-files-found: error
+  
+  DEV:
+    name: DEV
+    needs: publish
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: dev
+      appName: bunordprocessor
+      location: australiasoutheast
+    secrets:
+      subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+      credentials: ${{ secrets.AZURE_CREDENTIALS }}          
