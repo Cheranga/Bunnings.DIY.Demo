@@ -1,4 +1,5 @@
 using _build;
+using _build.Targets;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.ProjectModel;
@@ -7,7 +8,8 @@ using Nuke.Common.ProjectModel;
     "bunnings-diy",
     GitHubActionsImage.UbuntuLatest,
     AutoGenerate = true,
-    On = new[] { GitHubActionsTrigger.PullRequest, GitHubActionsTrigger.Push },
+    OnPullRequestBranches = new[] { "Main" },
+    OnPushBranches = new[] { "Main" },
     InvokedTargets = new[] { nameof(IBuildPipeline.Build) }
 )]
 sealed class Build : NukeBuild, IBuildPipeline

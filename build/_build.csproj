@@ -23,5 +23,9 @@
     <None Remove="..\.github\workflows\ci-build.yml" />
     <None Remove="..\.github\workflows\deploy.yml" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Targets\" />
+  </ItemGroup>
 
 </Project>

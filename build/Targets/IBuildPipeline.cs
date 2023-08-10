@@ -1,7 +1,7 @@
 using System;
 using Nuke.Common;
 
-namespace _build;
+namespace _build.Targets;
 
 /// <summary>
 /// Contains the tasks which will be carried out in a build pipeline

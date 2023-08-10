@@ -4,7 +4,7 @@ using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 
-namespace _build;
+namespace _build.Targets;
 
 /// <summary>
 /// Defines the standard `dotnet` tasks
