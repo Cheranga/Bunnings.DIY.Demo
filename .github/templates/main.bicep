@@ -123,8 +123,7 @@ module rbacSetting 'rbac/template.bicep' = {
   name: '${version}-rbac-func-blob'
   params: {
     appId: app.outputs.prodId
-    friendlyNameForBlobs: guid('${rgName}-prod-${funcAppName}')
-    friendlyNameForQueues: guid('${rgName}-prod-${funcAppName}-queues')
+    friendlyName: funcAppName
     storageName: sgName
   }
   dependsOn: [
