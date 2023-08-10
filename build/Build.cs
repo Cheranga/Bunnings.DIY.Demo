@@ -11,7 +11,7 @@ using Nuke.Common.ProjectModel;
 )]
 sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks, INpmBuildTasks, IOasLintTask
 {
-    public static int Main() => Execute<Build>(x => (x as IDotnetBuildTasks).Compile);
+    public static int Main() => Execute<Build>(x => (x as IDotnetBuildTasks).Publish);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild
@@ -20,4 +20,6 @@ sealed class Build : NukeBuild, IDotnetBuildTasks, IFormatCodeTasks, INpmBuildTa
 
     [Solution(GenerateProjects = true)]
     readonly Solution Solution;
+
+    public Project PublishProject() => Solution.Bunnings_DIY_OrderProcessor;
 }

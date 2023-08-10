@@ -1,6 +1,7 @@
 ﻿using System.Reflection.Metadata;
 using Nuke.Common;
 using Nuke.Common.IO;
+using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 
 /// <summary>
@@ -18,6 +19,8 @@ public interface IDotnetBuildTasks : INukeBuild
 
     Target Test => _ => _.Executes(() => DotNetTasks.DotNetTest());
 
+    Project PublishProject();
+
     Target Publish =>
         _ =>
             _.Description("Publish")
@@ -29,6 +32,8 @@ public interface IDotnetBuildTasks : INukeBuild
                         settings =>
                             settings
                                 .SetConfiguration(Configuration.Release)
+                                .SetProject(PublishProject())
+                                // .SetProject(RootDirectory / "src" / "Bunnings.DIY.OrderProcessor" / "Bunnings.DIY.OrderProcessor.csproj")
                                 .SetOutput(RootDirectory / "artifacts" / "funcapp")
                     );
                 });
