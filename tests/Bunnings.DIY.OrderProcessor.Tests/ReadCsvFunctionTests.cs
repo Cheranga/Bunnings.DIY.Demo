@@ -1,6 +1,5 @@
 using System.Net;
 using Azure;
-using Azure.Core.Pipeline;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using Bunnings.DIY.OrderProcessor.Features.ReadFile;
@@ -22,7 +21,8 @@ public static class ReadCsvFunctionTests
                         It.IsAny<BinaryData>(),
                         null,
                         It.IsAny<TimeSpan>(),
-                        It.IsAny<CancellationToken>())
+                        It.IsAny<CancellationToken>()
+                    )
             )
             .ReturnsAsync(
                 Response.FromValue(

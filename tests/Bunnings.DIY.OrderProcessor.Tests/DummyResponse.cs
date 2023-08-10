@@ -4,7 +4,6 @@ using Azure.Core;
 
 namespace Bunnings.DIY.OrderProcessor.Tests;
 
-
 public class DummyResponse : Response
 {
     private DummyResponse(HttpStatusCode errorStatusCode, string reason)

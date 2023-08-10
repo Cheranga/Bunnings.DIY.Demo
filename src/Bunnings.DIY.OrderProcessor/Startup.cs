@@ -25,14 +25,16 @@ public class Startup : FunctionsStartup
             .AddEnvironmentVariables()
             .Build();
     }
-    
+
     public override void Configure(IFunctionsHostBuilder builder)
     {
         var services = builder.Services;
 
         services.AddSingleton(_ =>
         {
-            var config = GetConfiguration(builder).GetSection(nameof(ReadFileConfig)).Get<ReadFileConfig>();
+            var config = GetConfiguration(builder)
+                .GetSection(nameof(ReadFileConfig))
+                .Get<ReadFileConfig>();
             return config;
         });
     }

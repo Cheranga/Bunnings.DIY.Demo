@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace></RootNamespace>
+    <Nullable>enable</Nullable>
     <NoWarn>CS0649;CS0169</NoWarn>
     <NukeRootDirectory>..</NukeRootDirectory>
     <NukeScriptDirectory>..</NukeScriptDirectory>
@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <PackageReference Include="Nuke.Common" Version="7.0.2" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="CSharpier" Version="0.25.0" ExcludeAssets="all" />
   </ItemGroup>
 
 </Project>

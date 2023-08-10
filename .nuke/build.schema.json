@@ -72,11 +72,19 @@
           "items": {
             "type": "string",
             "enum": [
+              "CheckFormat",
               "Clean",
               "Compile",
-              "Restore"
+              "Format",
+              "Restore",
+              "Test",
+              "ToolRestore"
             ]
           }
+        },
+        "Solution": {
+          "type": "string",
+          "description": "Path to a solution file that is automatically loaded"
         },
         "Target": {
           "type": "array",
@@ -84,9 +92,13 @@
           "items": {
             "type": "string",
             "enum": [
+              "CheckFormat",
               "Clean",
               "Compile",
-              "Restore"
+              "Format",
+              "Restore",
+              "Test",
+              "ToolRestore"
             ]
           }
         },
