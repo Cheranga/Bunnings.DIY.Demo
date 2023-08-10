@@ -19,10 +19,10 @@ name: bunnings-diy
 on:
   push:
     branches:
-      - Main
+      - main
   pull_request:
     branches:
-      - Main
+      - main
 
 jobs:
   ubuntu-latest:

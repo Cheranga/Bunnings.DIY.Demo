@@ -8,8 +8,8 @@ using Nuke.Common.ProjectModel;
     "bunnings-diy",
     GitHubActionsImage.UbuntuLatest,
     AutoGenerate = true,
-    OnPullRequestBranches = new[] { "Main" },
-    OnPushBranches = new[] { "Main" },
+    OnPullRequestBranches = new[] { "main" },
+    OnPushBranches = new[] { "main" },
     InvokedTargets = new[] { nameof(IBuildPipeline.Build) }
 )]
 sealed class Build : NukeBuild, IBuildPipeline
