@@ -120,7 +120,7 @@ module kvPolicies 'keyvault/policies.bicep' = {
 
 module rbacSetting 'rbac/template.bicep' = {
   scope: resourceGroup(rgName)
-  name: '${version}-rbac-func-blob'
+  name: '${version}-rbac'
   params: {
     appId: app.outputs.prodId
     friendlyName: funcAppName

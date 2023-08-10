@@ -16,7 +16,7 @@
 
 name: bunnings-diy
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   ubuntu-latest:

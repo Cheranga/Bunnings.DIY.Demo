@@ -6,7 +6,8 @@ using Nuke.Common.ProjectModel;
 [GitHubActions(
     "bunnings-diy",
     GitHubActionsImage.UbuntuLatest,
-    On = new[] { GitHubActionsTrigger.PullRequest },
+    AutoGenerate = true,
+    On = new[] { GitHubActionsTrigger.PullRequest, GitHubActionsTrigger.Push },
     InvokedTargets = new[] { nameof(IBuildPipeline.Build) }
 )]
 sealed class Build : NukeBuild, IBuildPipeline
